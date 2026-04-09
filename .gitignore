@@ -4,3 +4,4 @@ __pycache__/
 .env
 get-pip.py
 data/
+PROJECT_LOG.md
