@@ -1,6 +1,6 @@
 # Earnings Call Analyzer
 
-NLP pipeline that extracts sentiment, confidence, and risk signals from public earnings call transcripts to detect narrative shifts and predict short-term stock price movement.
+Natural Language Processing pipeline that extracts sentiment, confidence, and risk signals from public earnings call transcripts to detect narrative shifts and predict short-term stock price movement.
 
 ## What it does
 - Parses CEO/CFO remarks and analyst Q&A from earnings transcripts
@@ -14,11 +14,19 @@ Python · Pandas · scikit-learn · XGBoost · VADER/TextBlob · yfinance · Str
 
 ## Structure
 ```
-data/transcripts/     # Raw earnings call transcripts
-data/prices.csv       # Stock prices before/after each call
-src/                  # Pipeline scripts
+data/transcripts/     # Raw earnings call transcripts (.txt, TICKER_YEAR_Q#.txt)
+data/prices.csv       # Stock prices before/after each earnings call
+data/master_data.csv  # Master DataFrame joining transcripts + price data
+src/price_fetcher.py  # Pulls pre/post earnings prices via yfinance
+src/build_master.py   # Builds master_data.csv from prices + transcripts
 models/               # Trained model artifacts
 ```
 
+## Dataset
+- 10 companies: AAPL, MSFT, GOOGL, AMZN, META, NVDA, JPM, GS, TSLA, NFLX
+- 9 quarters each: Q1 2024 – Q4 2025 + Q1 2026
+- 90 transcripts total — manually collected from Motley Fool / Seeking Alpha / TickerTrends
+- Q1 2026 reserved as holdout test set
+
 ## Status
-🚧 In development — Sprint 1 of 8 (Data Foundation)
+🚧 In development — Sprint 1 of 13 (Data Collection Pipeline)
